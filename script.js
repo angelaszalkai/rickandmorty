@@ -20,15 +20,39 @@ const characterComponent = (characterData) => `
     </div>
 `
 
-const init = () => {
-    fetchUrl("https://rickandmortyapi.com/api/character"). then(data => {
-        //console.log(data)
-        
-        const info = data.info  //ez az info object
-        const characters = data.results //ez a characters array
+// ------- HIANYOS, LESZEDNI GITHUBROL!!! -------
 
-        characters.forEach(character => rootElement.insertAdjacentHTML("beforeend", characterComponent(character)))
-    })
+
+//button component
+const buttonComponent = (id, text) => `<button id=${id}>${text}</button>`
+
+const makeDomFromData = (data, rootElement) => {
+    const info = data.info  //ez az info object
+    const characters = data.results //ez a characters array
+    
+    characters.forEach(character => rootElement.insertAdjacentHTML("beforeend", characterComponent(character)))
+
+    console.log(info)
+
+    //megvizsgaljuk, hogy letezik-e a prev
+    if (info.prev) {
+        rootElement.insertAdjacentHTML("beforeend", buttonComponent("prev", "previous"))
+    }
+
+    //megvizsgaljuk, hogy letezik-e a next
+    if (info.next) {
+        rootElement.insertAdjacentHTML("beforeend", buttonComponent("next", "next"))
+    }
+
+
+
+}
+
+
+
+const init = () => {
+    fetchUrl("https://rickandmortyapi.com/api/character").then(data => makeDomFromData(data, rootElement))
+        //console.log(data)  
 }
 
 init()
