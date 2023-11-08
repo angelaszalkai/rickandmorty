@@ -1,3 +1,7 @@
+// ------- HIANYOS, LESZEDNI GITHUBROL!!! -------
+
+
+
 const rootElement = document.querySelector(#root)
 
 const fetchUrl = (url) => fetch(url).then(res => res.json())
@@ -20,9 +24,6 @@ const characterComponent = (characterData) => `
     </div>
 `
 
-// ------- HIANYOS, LESZEDNI GITHUBROL!!! -------
-
-
 //button component
 const buttonComponent = (id, text) => `<button id=${id}>${text}</button>`
 
@@ -34,14 +35,17 @@ const makeDomFromData = (data, rootElement) => {
 
     console.log(info)
 
+    //GOMBOKAT LETREHOZZA, IF-EKKEL VAN MEGHATAROZVA, MIKOR, MELYIK KELL
     //megvizsgaljuk, hogy letezik-e a prev
     if (info.prev) {
         rootElement.insertAdjacentHTML("beforeend", buttonComponent("prev", "previous"))
+        //ESEMENYFIGYELO IDE - .addEventListener()
     }
 
     //megvizsgaljuk, hogy letezik-e a next
     if (info.next) {
         rootElement.insertAdjacentHTML("beforeend", buttonComponent("next", "next"))
+        //ESEMENYFIGYELO IDE - .addEventListener()
     }
 
 
