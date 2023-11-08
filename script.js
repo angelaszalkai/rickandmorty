@@ -7,6 +7,7 @@ const skeletonComponent = () => `
   <div class="buttons"></div>
 `
 
+//returns an HTML string with the values of character object (image, name <h2>-ben, 'appears in: x episodes' in <h3>)
 const characterComponent = (characterData) => ` 
   <div class="char">
     <img src=${characterData.image}>
@@ -15,8 +16,10 @@ const characterComponent = (characterData) => `
   </div>
 `
 
+//button component
 const buttonComponent = (id, text) => `<button id=${id}>${text}</button>`
 
+//button event component, ebben van az esemenyfigyelo (.addEventListener)
 const buttonEventComponent = (id, url) => {
   const buttonElement = document.querySelector(`#${id}`)
   buttonElement.addEventListener("click", () => {
@@ -37,11 +40,14 @@ const makeDomFromData = (data, rootElement) => {
 
   characters.forEach(character => charactersElement.insertAdjacentHTML("beforeend", characterComponent(character)))
 
+//GOMBOKAT LETREHOZZA, IF-EKKEL VAN MEGHATAROZVA, MIKOR, MELYIK KELL
+//megvizsgaljuk, hogy letezik-e a prev
   if (info.prev) {
     buttonsElement.insertAdjacentHTML("beforeend", buttonComponent("prev", "previous"))
     buttonEventComponent("prev", info.prev)
   }
 
+//megvizsgaljuk, hogy letezik-e a next
   if (info.next) {
     buttonsElement.insertAdjacentHTML("beforeend", buttonComponent("next", "next"))
     buttonEventComponent("next", info.next)
@@ -101,13 +107,13 @@ const makeDomFromData = (data, rootElement) => {
     //megvizsgaljuk, hogy letezik-e a prev
     if (info.prev) {
         rootElement.insertAdjacentHTML("beforeend", buttonComponent("prev", "previous"))
-        //ESEMENYFIGYELO IDE - .addEventListener()
+        //ESEMENYFIGYELO IDE - .addEventListener() - ez vegul ki lett "szervezve" a buttonEventComponent-be
     }
 
     //megvizsgaljuk, hogy letezik-e a next
     if (info.next) {
         rootElement.insertAdjacentHTML("beforeend", buttonComponent("next", "next"))
-        //ESEMENYFIGYELO IDE - .addEventListener()
+        //ESEMENYFIGYELO IDE - .addEventListener() - ez vegul ki lett "szervezve" a buttonEventComponent-be
     }
 
 
